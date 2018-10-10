@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { actions } from "redux-saga-web3";
+import { actions, selectors } from "redux-saga-web3";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 
 import Logo from "./components/Logo";
 import Shirt from "./components/Shirt";
 import PurchaseContainer from "./containers/PurchaseContainer";
+import withLoading from "./withLoading";
 
 const StyledApp = styled.div`
   position: absolute;
@@ -40,19 +41,25 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
+  init: () => dispatch(actions.init.init()),
   getAccounts: () => dispatch(actions.accounts.getRequest()),
-  getLatestBlock: () => dispatch(actions.blocks.getBlockHeader("latest"))
 });
 
 export default compose(
   connect(
-    () => ({}),
+    (state) => ({
+      initialized: selectors.init.selectInit(state)
+    }),
     mapDispatchToProps
   ),
   lifecycle({
     componentDidMount() {
+      this.props.init();
       this.props.getAccounts();
-      this.props.getLatestBlock();
     }
+  }),
+  withLoading(({ initialized }) => {
+    console.log(initialized)
+    return true;
   })
 )(App);
