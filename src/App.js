@@ -4,6 +4,9 @@ import { actions, selectors } from "redux-saga-web3";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 
+import NetworkStatus from "./components/network/NetworkStatus";
+// TODO - Replace with component from react-redux-saga-web3 when fixed
+
 import Logo from "./components/Logo";
 import Shirt from "./components/Shirt";
 import PurchaseContainer from "./containers/PurchaseContainer";
@@ -26,10 +29,18 @@ const StyledProduct = styled.div`
   display: flex;
 `;
 
+const StyledNetworkStatus = styled(NetworkStatus)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
 class App extends Component {
   render() {
+    const { network, accounts } = this.props;
     return (
       <StyledApp>
+        <StyledNetworkStatus networkId={network} address={accounts[0]} />
         <Logo />
         <StyledProduct>
           <Shirt />
@@ -48,7 +59,9 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   connect(
     state => ({
-      initialized: selectors.init.selectInit(state)
+      isLoading: selectors.init.selectIsLoading(state),
+      network: selectors.init.selectNetwork(state),
+      accounts: selectors.init.selectAccounts(state)
     }),
     mapDispatchToProps
   ),
@@ -57,8 +70,5 @@ export default compose(
       this.props.init();
     }
   }),
-  withLoading(
-    ({ initialized }) =>
-      !initialized.has("accounts") || initialized.get("isLoading")
-  )
+  withLoading(({ accounts, isLoading }) => !accounts || isLoading)
 )(App);
