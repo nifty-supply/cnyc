@@ -4,8 +4,7 @@ import { actions, selectors } from "redux-saga-web3";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 
-import NetworkStatus from "./components/network/NetworkStatus";
-// TODO - Replace with component from react-redux-saga-web3 when fixed
+import NetworkStatus from "react-redux-saga-web3/lib/components/NetworkStatus";
 
 import Logo from "./components/Logo";
 import Shirt from "./components/Shirt";
