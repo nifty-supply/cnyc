@@ -26,12 +26,15 @@ const StyledApp = styled.div`
 
 const StyledProduct = styled.div`
   display: flex;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledNetworkStatus = styled(NetworkStatus)`
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
 `;
 
 class App extends Component {
