@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Price from "./Price";
-import Buy from "./Buy";
+import BuyContainer from "../containers/BuyContainer";
 
 const Title = styled.div`
   font-size: 1.36364em;
@@ -29,9 +29,10 @@ export default ({ purchase, price }) => (
       <br />
       <br />
       Shirts will be available for pickup at our co-working space and events.
-      We'll announce availability through the <a href="http://www.cryptonyc.org/">newsletter</a>.
+      We'll announce availability through the{" "}
+      <a href="http://www.cryptonyc.org/">newsletter</a>.
     </div>
     <Price price={price} />
-    <Buy purchase={purchase} price={price} />
+    <BuyContainer purchase={purchase} price={price} />
   </Content>
 );

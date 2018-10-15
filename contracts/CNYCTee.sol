@@ -15,8 +15,8 @@ contract CNYCTee is ERC721Token, Pausable {
   uint256 public price = 20000000000000000000 * 10 ** 18;
   address public CNYC = 0x88c255e16e86359099cfad8233e0c9721538b757;
 
-  Medianizer public medianizer = Medianizer(0xE39451e34f8FB108a8F6d4cA6C68dd38f37d26E3);
-  /* Medianizer public medianizer = Medianizer(0x729D19f657BD0614b4985Cf1D82531c67569197B); */
+  /* Medianizer public medianizer = Medianizer(0xE39451e34f8FB108a8F6d4cA6C68dd38f37d26E3); */
+  Medianizer public medianizer = Medianizer(0x729D19f657BD0614b4985Cf1D82531c67569197B);
 
   constructor(string _name, string _symbol, string _metadataUri) ERC721Token(_name, _symbol) public {
     metadataUri = _metadataUri;

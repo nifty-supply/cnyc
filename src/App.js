@@ -72,5 +72,5 @@ export default compose(
       this.props.getAccounts();
     }
   }),
-  withLoading(({ accounts, isLoading }) => !accounts || isLoading)
+  withLoading(({ isLoading }) => isLoading)
 )(App);

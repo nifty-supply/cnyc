@@ -36,38 +36,41 @@ const StyledInput = styled(AdaptedInput)`
   }
 `;
 
-export default ({ purchase, price }) => (
-  <Form
-    onSubmit={({ name, size }) => purchase(name, size, price.get("value"))}
-    render={({ handleSubmit, pristine, invalid, form }) => (
-      <StyledForm onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label htmlFor="name">Name</Label>
-          <Field
-            name="name"
-            id="name"
-            validate={required}
-            component={StyledInput}
-            control
-            placeholder="Your Name"
-          />
-        </FormGroup>
-        <StyledBuy>
-          <Field
-            name="size"
-            id="size"
-            component={StyledSelect}
-            control
-            options={[
-              { label: "Small", value: "0" },
-              { label: "Medium", value: "1" },
-              { label: "Large", value: "2" },
-              { label: "X-Large", value: "3" }
-            ]}
-          />
-          <Button>Purchase</Button>
-        </StyledBuy>
-      </StyledForm>
-    )}
-  />
-);
+export default ({ purchase, price, status }) => {
+  console.log(status)
+  return (
+    <Form
+      onSubmit={({ name, size }) => purchase(name, size, price.get("value"))}
+      render={({ handleSubmit, pristine, invalid, form }) => (
+        <StyledForm onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label htmlFor="name">Name</Label>
+            <Field
+              name="name"
+              id="name"
+              validate={required}
+              component={StyledInput}
+              control
+              placeholder="Your Name"
+            />
+          </FormGroup>
+          <StyledBuy>
+            <Field
+              name="size"
+              id="size"
+              component={StyledSelect}
+              control
+              options={[
+                { label: "Small", value: "0" },
+                { label: "Medium", value: "1" },
+                { label: "Large", value: "2" },
+                { label: "X-Large", value: "3" }
+              ]}
+            />
+            <Button>Purchase</Button>
+          </StyledBuy>
+        </StyledForm>
+      )}
+    />
+  );
+};

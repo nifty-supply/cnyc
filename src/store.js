@@ -14,7 +14,7 @@ import sagas from "./sagas";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const web3 = new Web3();
-web3.setProvider(window.web3.currentProvider);
+web3.setProvider(window.web3 ? window.web3.currentProvider : new Web3.providers.HttpProvider("https://mainnet.infura.io/"));
 
 export default history => {
   const sagaMiddleware = createSagaMiddleware({
