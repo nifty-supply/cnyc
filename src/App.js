@@ -69,6 +69,7 @@ export default compose(
   lifecycle({
     componentDidMount() {
       this.props.init();
+      this.props.getAccounts();
     }
   }),
   withLoading(({ accounts, isLoading }) => !accounts || isLoading)

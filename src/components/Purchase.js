@@ -20,11 +20,16 @@ export default ({ purchase, price }) => (
     <Title>CNYC Tee + OG Token Bundle</Title>
     <div>
       Support CryptoNYC in styled with the purchase of our limited edition tee
-      and OG Supporter Token.
+      and OG Supporter Token. OG Supporter tokens will grant owners access to
+      exclusive events and resources in the future!
       <br />
       <br />
       Contains: Premium Quality Alternative tee and locally-sourced ERC721
       token.
+      <br />
+      <br />
+      Shirts will be available for pickup at our co-working space and events.
+      We'll announce availability through the <a href="http://www.cryptonyc.org/">newsletter</a>.
     </div>
     <Price price={price} />
     <Buy purchase={purchase} price={price} />
