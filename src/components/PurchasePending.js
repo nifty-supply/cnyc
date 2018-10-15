@@ -23,7 +23,11 @@ const CardPendingText = styled.div`
   font-weight: 600;
   letter-spacing: 0.5px;
   line-height: 22px;
-  text-decoration: none;
+
+  a {
+    color: red;
+    text-decoration: none;
+  }
 `;
 
 const CardPending = ({ children }) => (
@@ -46,7 +50,7 @@ function getPhaseText(phase) {
 function renderEtherscanLink(transactionHash) {
   return (
     <div>
-      <a href={`https://etherscan.io/tx/${transactionHash}`}>
+      <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">
         Transaction status
       </a>
     </div>
