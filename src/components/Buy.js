@@ -19,6 +19,11 @@ const StyledForm = styled.form`
   flex-direction: column;
 `;
 
+const Warning = styled.div`
+  color: tomato;
+  margin-top: 25px;
+`;
+
 const StyledSelect = styled(AdaptedSelect)`
   margin-right: 10px;
 
@@ -29,6 +34,12 @@ const StyledSelect = styled(AdaptedSelect)`
 `;
 
 const StyledBuy = styled.div``;
+const StyledButton = styled(Button)`
+  &.sui-button-primary:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+  }
+`;
 
 const StyledInput = styled(AdaptedInput)`
   &.sui-control {
@@ -36,8 +47,28 @@ const StyledInput = styled(AdaptedInput)`
   }
 `;
 
+function isDisabled(status) {
+  return status === "ACCOUNT_LOCKED";
+}
+
+function renderWarning(status) {
+  switch (status) {
+    case "ACCOUNT_LOCKED":
+      if (window.web3)
+        return <Warning>Please unlock Metamask to purchase.</Warning>;
+      return (
+        <Warning>
+          Please install <a href="https://metamask.io/">Metamask</a> to
+          purchase.
+        </Warning>
+      );
+    default:
+      return null;
+  }
+}
+
 export default ({ purchase, price, status }) => {
-  console.log(status)
+  console.log(status);
   return (
     <Form
       onSubmit={({ name, size }) => purchase(name, size, price.get("value"))}
@@ -67,8 +98,9 @@ export default ({ purchase, price, status }) => {
                 { label: "X-Large", value: "3" }
               ]}
             />
-            <Button>Purchase</Button>
+            <StyledButton disabled={isDisabled(status)}>Purchase</StyledButton>
           </StyledBuy>
+          {renderWarning(status)}
         </StyledForm>
       )}
     />

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { actions, selectors } from "redux-saga-web3";
 import { connect } from "react-redux";
@@ -42,11 +42,17 @@ class App extends Component {
     return (
       <StyledApp>
         <StyledNetworkStatus networkId={network} address={accounts[0]} />
-        <Logo />
-        <StyledProduct>
-          <Shirt />
-          <PurchaseContainer />
-        </StyledProduct>
+        {network !== 1 ? (
+          <div>Please switch to Ethereum Mainnet</div>
+        ) : (
+          <Fragment>
+            <Logo />
+            <StyledProduct>
+              <Shirt />
+              <PurchaseContainer />
+            </StyledProduct>
+          </Fragment>
+        )}
       </StyledApp>
     );
   }
@@ -72,5 +78,5 @@ export default compose(
       this.props.getAccounts();
     }
   }),
-  withLoading(({ isLoading }) => isLoading)
+  withLoading(({ accounts, isLoading }) => !accounts || isLoading)
 )(App);

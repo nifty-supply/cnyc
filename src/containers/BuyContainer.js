@@ -6,7 +6,7 @@ import { actions, selectors } from "redux-saga-web3";
 import Buy from "../components/Buy";
 
 const mapStateToProps = (state) => {
-  const status = selectors.init.selectStatus()(state);
+  const status = selectors.init.selectStatus(state);
   return { status };
 };
 
