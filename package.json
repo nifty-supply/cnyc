@@ -6,6 +6,7 @@
     "connected-react-router": "^4.4.1",
     "final-form": "^4.10.0",
     "history": "^4.7.2",
+    "ipfs-api": "^25.0.0",
     "ipfs-mini": "^1.1.2",
     "jsencrypt": "^3.0.0-rc.1",
     "react": "^16.4.2",
@@ -46,7 +47,7 @@
     "openzeppelin-solidity": "^1.12.0",
     "prettier": "^1.13.2",
     "rimraf": "^2.6.2",
-    "truffle-hdwallet-provider": "^0.0.5",
+    "truffle-hdwallet-provider": "^1.0.0-web3one.0",
     "truffle-privatekey-provider": "^0.1.0",
     "zeppelin-solidity": "^1.10.0"
   }
