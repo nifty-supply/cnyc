@@ -32,8 +32,6 @@ const CardPending = ({ children }) => (
 
 function getPhaseText(phase) {
   switch (phase) {
-    case "UPLOADING":
-      return "We're uploading your collection 🤘";
     case "SENDING":
       return "Please confirm the transaction using metamask 😎";
     case "MINING":
