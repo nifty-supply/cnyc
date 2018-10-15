@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Price from "./Price";
 import BuyContainer from "../containers/BuyContainer";
+import PurchasePendingContainer from "../containers/PurchasePendingContainer";
 
 const Title = styled.div`
   font-size: 1.36364em;
@@ -17,6 +18,7 @@ const Content = styled.div`
 
 export default ({ purchase, price }) => (
   <Content>
+    <PurchasePendingContainer />
     <Title>CNYC Tee + OG Token Bundle</Title>
     <div>
       Support CryptoNYC in styled with the purchase of our limited edition tee
