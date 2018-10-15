@@ -6,7 +6,7 @@ import JSEncrypt from "jsencrypt";
 import { actions, selectors } from "../contracts/cnyct";
 
 import Purchase from "../components/Purchase";
-import ipfs from "../ipfs";
+import ipfs from "../utils/ipfs";
 
 const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx3S/nFd1+KaunH/bT08hKBJGG

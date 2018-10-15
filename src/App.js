@@ -9,7 +9,7 @@ import NetworkStatus from "react-redux-saga-web3/lib/components/NetworkStatus";
 import Logo from "./components/Logo";
 import Shirt from "./components/Shirt";
 import PurchaseContainer from "./containers/PurchaseContainer";
-import withLoading from "./withLoading";
+import withLoading from "./utils/withLoading";
 
 const StyledApp = styled.div`
   position: absolute;
