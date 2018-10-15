@@ -12,6 +12,7 @@ const CardPendingContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 5000000;
 `;
 
 const CardPendingText = styled.div`
@@ -22,6 +23,7 @@ const CardPendingText = styled.div`
   font-weight: 600;
   letter-spacing: 0.5px;
   line-height: 22px;
+  text-decoration: none;
 `;
 
 const CardPending = ({ children }) => (
@@ -32,16 +34,34 @@ const CardPending = ({ children }) => (
 
 function getPhaseText(phase) {
   switch (phase) {
-    case "SENDING":
+    case "SENT":
       return "Please confirm the transaction using metamask 😎";
-    case "MINING":
-      return "Waiting for your transaction to be mined 🎉";
+    case "PENDING":
+      return `Waiting for your transaction to be mined 🎉`;
     default:
       return "Loading";
   }
 }
 
-const PurchasePending = ({ isLoading, phase }) =>
-  isLoading ? <CardPending>{getPhaseText(phase)}</CardPending> : <div />;
+function renderEtherscanLink(transactionHash) {
+  return (
+    <div>
+      <a href={`https://etherscan.io/tx/${transactionHash}`}>
+        Transaction status
+      </a>
+    </div>
+  );
+}
+const PurchasePending = ({ purchase }) => {
+  return !!purchase ? (
+    <CardPending>
+      {getPhaseText(purchase.get("phase"))}
+      {purchase.has("transactionHash") &&
+        renderEtherscanLink(purchase.get("transactionHash"))}
+    </CardPending>
+  ) : (
+    <div />
+  );
+};
 
 export default PurchasePending;

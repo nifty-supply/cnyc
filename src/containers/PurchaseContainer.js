@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     const hash = await ipfs.add(encrypted);
     dispatch(
       actions.methods
-        .purchase({ value: price })
+        .purchase({ value: price, path: [] })
         .send(Web3Utils.asciiToHex(hash))
     );
   },
