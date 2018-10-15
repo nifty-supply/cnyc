@@ -6,9 +6,8 @@ import { compose, lifecycle } from "recompose";
 
 import NetworkStatus from "react-redux-saga-web3/lib/components/NetworkStatus";
 
-import Logo from "./components/Logo";
-import Shirt from "./components/Shirt";
 import PurchaseContainer from "./containers/PurchaseContainer";
+import { Logo, Shirt } from "./components";
 import withLoading from "./utils/withLoading";
 
 const StyledApp = styled.div`
@@ -26,7 +25,7 @@ const StyledApp = styled.div`
 
 const StyledProduct = styled.div`
   display: flex;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 830px) {
     flex-direction: column;
   }
 `;
