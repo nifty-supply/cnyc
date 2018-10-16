@@ -8,7 +8,9 @@ const Web3Utils = require("web3-utils");
 const IPFS = require("ipfs-mini");
 
 Web3EthContract.setProvider(
-  new Web3.providers.HttpProvider("https://mainnet.infura.io/")
+  window.web3
+    ? window.web3.currentProvider
+    : new Web3.providers.HttpProvider("https://mainnet.infura.io/")
 );
 
 const contract = new Web3EthContract(
@@ -100,9 +102,7 @@ class Orders extends Component {
                 )
                   .then(items => {
                     console.log(items);
-                    return items.map(item =>
-                      decrypt.decrypt(item)
-                    );
+                    return items.map(item => decrypt.decrypt(item));
                   })
                   .then(orders => {
                     console.log(orders);
