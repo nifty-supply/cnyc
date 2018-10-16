@@ -21,7 +21,7 @@ export default ({ purchase, price }) => (
     <PurchasePendingContainer />
     <Title>CNYC Tee + OG Token Bundle</Title>
     <div>
-      Support CryptoNYC in style with the purchase of our limited edition tee
+      Support Crypto NYC in style with the purchase of our limited edition tee
       and OG Supporter Token. OG Supporter tokens will grant owners access to
       exclusive events and resources in the future!
       <br />

@@ -5,7 +5,7 @@ import JSEncrypt from "jsencrypt";
 const Web3 = require("web3");
 const Web3EthContract = require("web3-eth-contract");
 const Web3Utils = require("web3-utils");
-const IPFS = require("ipfs-api");
+const IPFS = require("ipfs-mini");
 
 Web3EthContract.setProvider(
   new Web3.providers.HttpProvider("https://mainnet.infura.io/")
@@ -23,6 +23,11 @@ const ipfs = new IPFS({
   port: 443,
   protocol: "https"
 });
+
+const cat = address =>
+  new Promise((resolve, reject) =>
+    ipfs.cat(address, (err, res) => (err ? reject(err) : resolve(res)))
+  );
 
 class Orders extends Component {
   constructor(props) {
@@ -90,13 +95,13 @@ class Orders extends Component {
                     const metadata = event.returnValues.metadata;
                     const ipfsCID = Web3Utils.hexToAscii(metadata);
 
-                    return ipfs.files.cat(ipfsCID);
+                    return cat(ipfsCID);
                   })
                 )
                   .then(items => {
                     console.log(items);
                     return items.map(item =>
-                      decrypt.decrypt(item.toString("utf8"))
+                      decrypt.decrypt(item)
                     );
                   })
                   .then(orders => {
