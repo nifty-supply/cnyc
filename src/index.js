@@ -13,7 +13,6 @@ import createStore from "./store";
 
 import "./index.css";
 import App from "./App";
-import Orders from "./Orders";
 
 // Create a history
 const history = createHistory();
@@ -28,10 +27,7 @@ ReactDOM.render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={theme}>
-        <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="/orders" component={Orders} />
-        </Switch>
+        <App />
       </ThemeProvider>
     </ConnectedRouter>
   </ReduxProvider>,
