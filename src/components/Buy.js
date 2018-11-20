@@ -34,32 +34,32 @@ const StyledSelect = styled(AdaptedSelect)`
 `;
 
 const StyledBuy = styled.div``;
-const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)`
   &.sui-button-primary:disabled {
     background-color: #888;
     cursor: not-allowed;
   }
 `;
 
-const StyledInput = styled(AdaptedInput)`
+export const StyledInput = styled(AdaptedInput)`
   &.sui-control {
     width: 300px;
   }
 `;
 
-function isDisabled(status) {
+export function isDisabled(status) {
   return status === "ACCOUNT_LOCKED";
 }
 
-function renderWarning(status) {
+export function renderWarning(status, type = "purchase") {
   switch (status) {
     case "ACCOUNT_LOCKED":
       if (window.web3)
-        return <Warning>Please unlock Metamask to purchase.</Warning>;
+        return <Warning>Please unlock Metamask to {type}.</Warning>;
       return (
         <Warning>
           Please install <a href="https://metamask.io/">Metamask</a> to
-          purchase.
+          {type}.
         </Warning>
       );
     default:
