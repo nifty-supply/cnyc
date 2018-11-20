@@ -10,7 +10,9 @@ const IPFS = require("ipfs-mini");
 Web3EthContract.setProvider(
   window.web3
     ? window.web3.currentProvider
-    : new Web3.providers.HttpProvider("https://mainnet.infura.io/")
+    : new Web3.providers.HttpProvider(
+        `https://mainnet.infura.io/${process.env.REACT_APP_INFURA_KEY}`
+      )
 );
 
 const contract = new Web3EthContract(
