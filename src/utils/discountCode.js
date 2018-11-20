@@ -1,4 +1,5 @@
 import JSEncrypt from "jsencrypt";
+import Web3Utils from "web3-utils";
 
 const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx3S/nFd1+KaunH/bT08hKBJGG
@@ -11,7 +12,7 @@ const encrypt = new JSEncrypt();
 encrypt.setPublicKey(PUBLIC_KEY);
 
 export function generateDiscountCode(account, eventName) {
-  return `${encrypt
-    .encrypt(JSON.stringify({ account, eventName }))
-    .slice(0, 10)}`;
+  return `${Web3Utils.asciiToHex(
+    encrypt.encrypt(JSON.stringify({ account, eventName }))
+  ).slice(0, 10)}`;
 }
