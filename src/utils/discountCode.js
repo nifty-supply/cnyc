@@ -1,18 +1,8 @@
-import JSEncrypt from "jsencrypt";
-import Web3Utils from "web3-utils";
-
-const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx3S/nFd1+KaunH/bT08hKBJGG
-b10//5fbkuaM6yDD5nYuzZ4s0zhCT/9xLfnWSFJPd9NXD0FEUcoy+nx9XxKrivr6
-cQuIxefki7ePuhlWyGCuFKpGzgVhogHR3047oPKUlcmS7OP8XSu+C104aVYIUZeN
-RjWo6UdT9haqd99ZkQIDAQAB
------END PUBLIC KEY-----`;
-
-const encrypt = new JSEncrypt();
-encrypt.setPublicKey(PUBLIC_KEY);
+import { sha3 } from "web3-utils";
 
 export function generateDiscountCode(account, eventName) {
-  return `${Web3Utils.asciiToHex(
-    encrypt.encrypt(JSON.stringify({ account, eventName }))
-  ).slice(0, 10)}`;
+  return sha3(
+    account.toLowerCase(),
+    process.env.REACT_APP_DISCOUNT_SALT
+  ).substr(2, 10);
 }
