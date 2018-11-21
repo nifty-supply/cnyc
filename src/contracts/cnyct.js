@@ -48,7 +48,7 @@ instance.attachMethod(
             args: [account, eventName],
             options: { at: contractAddress }
           },
-          payload: discountCode
+          payload: { discountCode }
         });
       });
     },
@@ -58,7 +58,7 @@ instance.attachMethod(
         return fromJS({ isInitialized: true, isLoading: true });
       }
       case types.call.SUCCESS: {
-        return fromJS({ discountCode: action.payload });
+        return fromJS({ discountCode: action.payload.discountCode });
       }
       default:
         return state;
