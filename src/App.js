@@ -81,9 +81,9 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   connect(
     state => ({
-      isLoading: selectors.init.selectIsLoading(state),
-      network: selectors.init.selectNetwork(state),
-      accounts: selectors.init.selectAccounts(state)
+      isInitialized: selectors.init.selectIsInitialized(state),
+      network: selectors.network.selectId(state),
+      accounts: selectors.accounts.selectAccounts(state)
     }),
     mapDispatchToProps
   ),
@@ -93,5 +93,8 @@ export default compose(
       this.props.getAccounts();
     }
   }),
-  withLoading(({ accounts, isLoading }) => !accounts || isLoading)
+  withLoading(
+    ({ accounts, isInitialized, network }) =>
+      !accounts || !isInitialized || !network
+  )
 )(App);
